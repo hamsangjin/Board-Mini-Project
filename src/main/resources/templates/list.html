@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>게시글 목록</title>
+        <link rel="stylesheet" th:href="@{/board.css}">
+    </head>
+    <body>
+        <div class="container">
+            <h1>게시글 목록</h1>
+            <table th:if="${!boards.empty}" class="board-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>작성자</th>
+                    <th>제목</th>
+                    <th>작성일</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="board : ${boards}">
+                        <td th:text="${board.id}"></td>
+                        <td th:text="${board.name}"></td>
+                        <td>
+                            <a th:href="@{/view/{id} (id=${board.id})}" th:text="${board.title}"></a>
+                        </td>
+                        <td th:text="${#temporals.format(board.created_at, 'yyyy/MM/dd')}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:if="${boards.totalPages > 1}" class="pagination">
+                <ul>
+                    <li th:each="i : ${#numbers.sequence(1, boards.totalPages)}">
+                        <a th:href="@{/list(page=${i})}" th:text="${i}"></a>
+                    </li>
+                </ul>
+            </div>
+            <a th:href="@{/writeform}" class="write-button">글쓰기</a>
+        </div>
+    </body>
+</html>
