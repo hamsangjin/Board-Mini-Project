@@ -12,7 +12,7 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    public Page<Board> findAllFriends(Pageable pageable) {
+    public Page<Board> findAllBoards(Pageable pageable) {
         Pageable sortedByDescId = PageRequest.of(
                 pageable.getPageNumber(),
                 pageable.getPageSize(),
