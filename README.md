@@ -154,3 +154,14 @@ INSERT INTO board (name, title, password, content) VALUES
 ### 컨트롤러 구현
 - 컨트롤러 클래스 구현
 - thymeleaf템플릿 작성
+
+<br>
+
+# 5. 실행 화면
+![](https://github.com/hamsangjin/Board_Mini_Project/assets/103736614/8970a90d-23b4-4e5f-a0e1-92187097fd19) | ![](https://github.com/hamsangjin/Board_Mini_Project/assets/103736614/990c544f-4b63-460c-92eb-646113d7ec11)
+-- | -- |
+
+![](https://github.com/hamsangjin/Board_Mini_Project/assets/103736614/45135f11-72a8-4212-9742-b19bb39506ff) |  ![](https://github.com/hamsangjin/Board_Mini_Project/assets/103736614/a2b8c6bc-bb8a-413a-928e-e7872ccedf81) | ![](https://github.com/hamsangjin/Board_Mini_Project/assets/103736614/ced24e44-74cc-4d78-aae7-dfc5fd0f18a7)
+-- | -- | -- | 
+
+
