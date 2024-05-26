@@ -18,8 +18,8 @@ public class BoardController {
 
     @GetMapping("/list")
     public String boards(Model model,
-                          @RequestParam(defaultValue = "1") int page,
-                          @RequestParam(defaultValue = "5") int size) {
+                         @RequestParam(defaultValue = "1") int page,
+                         @RequestParam(defaultValue = "5") int size) {
         Pageable pageable = PageRequest.of(page-1, size);
         Page<Board> boards = boardService.findAllBoards(pageable);
         model.addAttribute("boards", boards);
@@ -35,8 +35,11 @@ public class BoardController {
 
     @PostMapping("/writeform")
     public String addBoard(@ModelAttribute Board board, RedirectAttributes alert) {
-        alert.addFlashAttribute("msg", "추가 성공");
+        board.setCreated_at(LocalDateTime.now());
+        board.setUpdated_at(LocalDateTime.now());
         boardService.save(board);
+
+        alert.addFlashAttribute("msg", "추가 성공");
         return "redirect:/list";
     }
 
@@ -59,13 +62,13 @@ public class BoardController {
                               RedirectAttributes alert) {
         Board updateBoard = boardService.findById(id);
         if (updateBoard.getPassword().equals(password)) {
-            alert.addFlashAttribute("msg", "수정 성공");
             updateBoard.setTitle(board.getTitle());
             updateBoard.setName(board.getName());
             updateBoard.setContent(board.getContent());
             updateBoard.setUpdated_at(LocalDateTime.now());
             boardService.save(updateBoard);
 
+            alert.addFlashAttribute("msg", "수정 성공");
             return "redirect:/list";
         } else{
             alert.addFlashAttribute("msg", "수정 실패");

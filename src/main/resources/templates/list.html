@@ -21,20 +21,20 @@
                     <tr th:each="board : ${boards}">
                         <td th:text="${board.id}"></td>
                         <td th:text="${board.name}"></td>
-                        <td>
-                            <a th:href="@{/view/{id} (id=${board.id})}" th:text="${board.title}"></a>
-                        </td>
+                        <td>    <a th:href="@{/view/{id} (id=${board.id})}" th:text="${board.title}"></a>   </td>
                         <td th:text="${#temporals.format(board.created_at, 'yyyy/MM/dd')}"></td>
                     </tr>
                 </tbody>
             </table>
+
             <div th:if="${boards.totalPages > 1}" class="pagination">
                 <ul>
                     <li th:each="i : ${#numbers.sequence(1, boards.totalPages)}">
-                        <a th:href="@{/list(page=${i})}" th:text="${i}"></a>
+                        <a th:href="@{/list(page=${i})}" th:text="${i}" th:classappend="${i} == ${currentPage} ? 'active' : ''"></a>
                     </li>
                 </ul>
             </div>
+
             <a th:href="@{/writeform}" class="write-button">글쓰기</a>
         </div>
     </body>
